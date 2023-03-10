@@ -1,7 +1,13 @@
 // SPDX-License-Identifier: UNLICENSED
-pragma solidity ^0.8.9;
+pragma solidity ^0.8.17;
 
 contract Test {
+    struct Person {
+        string name;
+        address personAddress;
+        bool checkedIn;
+    }
+
     struct Event {
         uint32 id;
         string eventName;
@@ -10,13 +16,6 @@ contract Test {
         uint32 capacity;
         uint32 deposit;
         Person[] rsvp;
-        //Person[] attendees;
-    }
-
-    struct Person {
-        string name;
-        address personAddress;
-        bool checkedIn;
     }
 
     uint32 eventID = 0;
@@ -33,7 +32,11 @@ contract Test {
     ) external {
         // set to external because it cannot be accessed internally, only externally to save gass
         Person[] memory rsvpList;
-        Event memory e = Event({
+        // initialize event into mapping
+        events[eventID].id = eventID;
+        // get initialized event and set its values
+        Event memory e = events[eventID];
+        e = Event({
             id: eventID,
             eventName: eventName,
             eventCreator: eventCreator,
@@ -42,7 +45,6 @@ contract Test {
             deposit: deposit,
             rsvp: rsvpList
         });
-        events[eventID] = e;
         eventID++;
     }
 
@@ -91,10 +93,8 @@ contract Test {
         for (uint256 i = 0; i < events[id].rsvp.length; i++) {
             // cannot be checked in
             if (!events[id].rsvp[i].checkedIn) {
-                // transfer deposit from contract to event ownder
-                payable(events[id].rsvp[i].eventCreator).transfer(
-                    events[id].deposit
-                );
+                // transfer deposit from contract to event owner
+                payable(events[id].eventCreator).transfer(events[id].deposit);
             }
         }
     }
