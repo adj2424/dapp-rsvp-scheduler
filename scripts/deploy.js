@@ -2,7 +2,7 @@ const { ethers, network } = require('hardhat');
 
 async function main() {
 	// get the contract factory
-	const TestFactory = await ethers.getContractFactory('Test');
+	const TestFactory = await ethers.getContractFactory('Rsvp');
 	// deploy the contract
 	const test = await TestFactory.deploy();
 	console.log('deploying...');

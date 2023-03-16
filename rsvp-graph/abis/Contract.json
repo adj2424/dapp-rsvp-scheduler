@@ -157,7 +157,7 @@
           },
           { "internalType": "bool[]", "name": "rsvpCheckIn", "type": "bool[]" }
         ],
-        "internalType": "struct Test.Event",
+        "internalType": "struct Rsvp.Event",
         "name": "",
         "type": "tuple"
       }

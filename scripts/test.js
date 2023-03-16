@@ -14,7 +14,7 @@ const printBalance = async (owner, addr1, addr2, test) => {
 
 async function main() {
 	// get the contract factory
-	const TestFactory = await ethers.getContractFactory('Test');
+	const TestFactory = await ethers.getContractFactory('Rsvp');
 	// deploy the contract
 	const test = await TestFactory.deploy();
 	console.log('deploying...');
