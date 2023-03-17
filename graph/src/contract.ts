@@ -9,7 +9,7 @@ import { integer } from '@protofire/subgraph-toolkit';
 
 export function handleEvent(event: EventEvent): void {
 	// check if event exist
-	let id = event.params.eventID.toString();
+	let id = event.params.id.toString();
 }
 
 export function handleCheckIn(event: CheckInEvent): void {}

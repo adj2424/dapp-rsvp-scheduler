@@ -6,7 +6,8 @@ contract Rsvp {
         string eventName,
         uint256 eventDate,
         uint32 capacity,
-        uint256 deposit
+        uint256 deposit,
+        uint32 id
     );
 
     event NewRsvp(string name, address personAddress, uint32 id);
@@ -54,9 +55,8 @@ contract Rsvp {
             rsvpCheckIn: new bool[](0)
         });
         events[eventID] = e;
+        emit NewEvent(eventName, eventDate, capacity, deposit, eventID);
         eventID++;
-
-        emit NewEvent(eventName, eventDate, capacity, deposit);
     }
 
     // rsvp to an event by paying a small deposit

@@ -25,7 +25,7 @@ dataSources:
       eventHandlers:
         - event: NewCheckIn(address,uint32)
           handler: handleNewCheckIn
-        - event: NewEvent(string,uint256,uint32,uint256)
+        - event: NewEvent(string,uint256,uint32,uint256,uint32)
           handler: handleNewEvent
         - event: NewRsvp(string,address,uint32)
           handler: handleNewRsvp
