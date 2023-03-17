@@ -1,6 +1,6 @@
 specVersion: 0.0.5
 schema:
-  file: ./schema.graphql
+  file: schema.graphql
 features:
   - ipfsOnEthereumContracts
 dataSources:
@@ -8,7 +8,7 @@ dataSources:
     name: Contract
     network: mumbai
     source:
-      address: '0xDA140B8670e6b15BAeee58A863AfBda72ec5041B'
+      address: "0xDA140B8670e6b15BAeee58A863AfBda72ec5041B"
       abi: Contract
       startBlock: 33208076
     mapping:
@@ -21,7 +21,7 @@ dataSources:
         - RSVP
       abis:
         - name: Contract
-          file: ./abis/Contract.json
+          file: Contract\abis\Contract.json
       eventHandlers:
         - event: NewCheckIn(address,uint32)
           handler: handleNewCheckIn
@@ -31,4 +31,4 @@ dataSources:
           handler: handleNewRsvp
         - event: Withdraw(address,uint32)
           handler: handleWithdraw
-      file: ./src/contract.ts
+      file: Contract\Contract.wasm

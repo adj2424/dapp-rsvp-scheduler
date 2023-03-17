@@ -1,0 +1,26 @@
+type Event @entity {
+	id: ID!
+	eventID: BigInt!
+	eventName: String # string
+	eventDescription: String
+	eventDate: BigInt!
+	eventOwner: Bytes!
+	link: String
+	capacity: BigInt! # uint32
+	deposit: BigInt! # uint256
+	paidOut: Boolean!
+	totalRSVP: BigInt!
+	totalCheckIn: BigInt!
+	rsvps: [RSVP!] @derivedFrom(field: "event")
+	checkIns: [CheckIn!] @derivedFrom(field: "event")
+}
+
+type CheckIn @entity(immutable: true) {
+	id: ID!
+	event: Event!
+}
+
+type RSVP @entity(immutable: true) {
+	id: ID!
+	event: Event!
+}
