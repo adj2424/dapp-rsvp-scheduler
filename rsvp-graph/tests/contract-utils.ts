@@ -32,7 +32,8 @@ export function createNewEventEvent(
   eventName: string,
   eventDate: BigInt,
   capacity: BigInt,
-  deposit: BigInt
+  deposit: BigInt,
+  id: BigInt
 ): NewEvent {
   let newEventEvent = changetype<NewEvent>(newMockEvent())
 
@@ -58,6 +59,9 @@ export function createNewEventEvent(
       "deposit",
       ethereum.Value.fromUnsignedBigInt(deposit)
     )
+  )
+  newEventEvent.parameters.push(
+    new ethereum.EventParam("id", ethereum.Value.fromUnsignedBigInt(id))
   )
 
   return newEventEvent

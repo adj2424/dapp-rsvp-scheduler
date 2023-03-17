@@ -3,11 +3,12 @@ pragma solidity ^0.8.17;
 
 contract Rsvp {
     event NewEvent(
+        uint32 id,
+        address personAddress,
         string eventName,
         uint256 eventDate,
         uint32 capacity,
-        uint256 deposit,
-        uint32 id
+        uint256 deposit
     );
 
     event NewRsvp(string name, address personAddress, uint32 id);
@@ -55,7 +56,14 @@ contract Rsvp {
             rsvpCheckIn: new bool[](0)
         });
         events[eventID] = e;
-        emit NewEvent(eventName, eventDate, capacity, deposit, eventID);
+        emit NewEvent(
+            eventID,
+            msg.sender,
+            eventName,
+            eventDate,
+            capacity,
+            deposit
+        );
         eventID++;
     }
 

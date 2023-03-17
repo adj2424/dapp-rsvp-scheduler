@@ -7,9 +7,20 @@ import {
 import { CheckIn, Event, RSVP } from '../generated/schema';
 import { integer } from '@protofire/subgraph-toolkit';
 
+// when am event is fired in sol, the newEvent creation is handled here
+// we must set the graphql schema to match the event params
+// why? idk
 export function handleEvent(event: EventEvent): void {
+	let id = event.params.id.toHex();
 	// check if event exist
-	let id = event.params.eventID.toString();
+	let newEvent = Event.load(id);
+	if (newEvent == null) {
+		newEvent = new Event(id);
+		newEvent.eventID = event.params.id;
+		newEvent.eventName = event.params.eventName;
+		newEvent.eventDate = event.params.eventDate;
+		newEvent.eventOwner = 
+	}
 }
 
 export function handleCheckIn(event: CheckInEvent): void {}

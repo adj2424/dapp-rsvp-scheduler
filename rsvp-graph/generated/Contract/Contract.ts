@@ -60,6 +60,10 @@ export class NewEvent__Params {
   get deposit(): BigInt {
     return this._event.parameters[3].value.toBigInt();
   }
+
+  get id(): BigInt {
+    return this._event.parameters[4].value.toBigInt();
+  }
 }
 
 export class NewRsvp extends ethereum.Event {

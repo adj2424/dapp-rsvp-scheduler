@@ -45,24 +45,28 @@ export class NewEvent__Params {
     this._event = event;
   }
 
+  get id(): BigInt {
+    return this._event.parameters[0].value.toBigInt();
+  }
+
+  get personAddress(): Address {
+    return this._event.parameters[1].value.toAddress();
+  }
+
   get eventName(): string {
-    return this._event.parameters[0].value.toString();
+    return this._event.parameters[2].value.toString();
   }
 
   get eventDate(): BigInt {
-    return this._event.parameters[1].value.toBigInt();
-  }
-
-  get capacity(): BigInt {
-    return this._event.parameters[2].value.toBigInt();
-  }
-
-  get deposit(): BigInt {
     return this._event.parameters[3].value.toBigInt();
   }
 
-  get id(): BigInt {
+  get capacity(): BigInt {
     return this._event.parameters[4].value.toBigInt();
+  }
+
+  get deposit(): BigInt {
+    return this._event.parameters[5].value.toBigInt();
   }
 }
 

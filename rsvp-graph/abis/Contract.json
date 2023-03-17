@@ -44,6 +44,12 @@
         "internalType": "uint256",
         "name": "deposit",
         "type": "uint256"
+      },
+      {
+        "indexed": false,
+        "internalType": "uint32",
+        "name": "id",
+        "type": "uint32"
       }
     ],
     "name": "NewEvent",

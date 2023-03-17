@@ -1,6 +1,6 @@
 type Event @entity {
 	id: ID!
-	eventID: Bytes!
+	eventID: BigInt!
 	eventName: String # string
 	eventDescription: String
 	eventDate: BigInt!
