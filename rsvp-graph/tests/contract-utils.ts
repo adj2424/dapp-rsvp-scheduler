@@ -29,16 +29,26 @@ export function createNewCheckInEvent(
 }
 
 export function createNewEventEvent(
+  id: BigInt,
+  personAddress: Address,
   eventName: string,
   eventDate: BigInt,
   capacity: BigInt,
-  deposit: BigInt,
-  id: BigInt
+  deposit: BigInt
 ): NewEvent {
   let newEventEvent = changetype<NewEvent>(newMockEvent())
 
   newEventEvent.parameters = new Array()
 
+  newEventEvent.parameters.push(
+    new ethereum.EventParam("id", ethereum.Value.fromUnsignedBigInt(id))
+  )
+  newEventEvent.parameters.push(
+    new ethereum.EventParam(
+      "personAddress",
+      ethereum.Value.fromAddress(personAddress)
+    )
+  )
   newEventEvent.parameters.push(
     new ethereum.EventParam("eventName", ethereum.Value.fromString(eventName))
   )
@@ -59,9 +69,6 @@ export function createNewEventEvent(
       "deposit",
       ethereum.Value.fromUnsignedBigInt(deposit)
     )
-  )
-  newEventEvent.parameters.push(
-    new ethereum.EventParam("id", ethereum.Value.fromUnsignedBigInt(id))
   )
 
   return newEventEvent
