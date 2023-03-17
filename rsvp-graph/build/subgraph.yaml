@@ -24,11 +24,11 @@ dataSources:
           file: Contract\abis\Contract.json
       eventHandlers:
         - event: NewCheckIn(address,uint32)
-          handler: handleNewCheckIn
+          handler: handleCheckIn
         - event: NewEvent(uint32,address,string,uint256,uint32,uint256)
-          handler: handleNewEvent
+          handler: handleEvent
         - event: NewRsvp(string,address,uint32)
-          handler: handleNewRsvp
+          handler: handleRsvp
         - event: Withdraw(address,uint32)
           handler: handleWithdraw
       file: Contract\Contract.wasm
