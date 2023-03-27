@@ -1,8 +1,28 @@
 import { ConnectButton } from '@rainbow-me/rainbowkit';
 import type { NextPage } from 'next';
+import { ethers } from 'ethers';
 import Head from 'next/head';
+import connectContract from '../utils/connect';
 
 const Home: NextPage = () => {
+	const createEvent = async () => {
+		try {
+			const contract = connectContract();
+			if (!contract) return;
+			const txn = await contract.createEvent(
+				'Event Name',
+				new Date().valueOf(), // epoch time
+				100, // capacity
+				ethers.utils.parseEther('1') // 1 eth in gwei??
+			);
+			console.log('minting...');
+			await txn.wait();
+			console.log('minted!');
+			console.log(txn);
+		} catch (err) {
+			console.log(err);
+		}
+	};
 	return (
 		<div>
 			<Head>
@@ -24,7 +44,7 @@ const Home: NextPage = () => {
 				<label htmlFor="deposit">Deposit:</label>
 				<input type="text" id="deposit"></input>
 				<br />
-				<button>Submit</button>
+				<button onClick={createEvent}>Submit</button>
 
 				<ConnectButton />
 			</main>
